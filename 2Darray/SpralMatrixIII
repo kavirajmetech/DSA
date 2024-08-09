@@ -1,0 +1,42 @@
+class Solution {
+    public int[][] spiralMatrixIII(int r, int c, int i, int j) {
+        int[][] arr = new int[r * c][2];
+        int index = 0;
+        int count = 1; 
+        arr[index++] = new int[]{i, j}; 
+        
+        while (index < r * c) {
+            for (int k = 0; k < count; k++) {
+                j++;
+                if (i >= 0 && i < r && j >= 0 && j < c) {
+                    arr[index++] = new int[]{i, j};
+                }
+            }
+            
+            for (int k = 0; k < count; k++) {
+                i++;
+                if (i >= 0 && i < r && j >= 0 && j < c) {
+                    arr[index++] = new int[]{i, j};
+                }
+            }
+            count++;
+            
+            for (int k = 0; k < count; k++) {
+                j--;
+                if (i >= 0 && i < r && j >= 0 && j < c) {
+                    arr[index++] = new int[]{i, j};
+                }
+            }
+            
+            for (int k = 0; k < count; k++) {
+                i--;
+                if (i >= 0 && i < r && j >= 0 && j < c) {
+                    arr[index++] = new int[]{i, j};
+                }
+            }
+            count++;
+        }
+        
+        return arr;
+    }
+}
