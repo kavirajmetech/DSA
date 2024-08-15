@@ -1,0 +1,31 @@
+class Solution {
+    public int find(Node node){
+        if(node.next==null){
+            int k=node.data+1;
+            if(k==10) {
+                node.data=0;
+                return 1;
+            }else node.data=k;
+        }else{
+            int from=find(node.next);
+            if(from!=0){
+                int k=node.data+1;
+                if(k==10) {
+                    node.data=0;
+                    return 1;
+                }else{
+                    node.data=k;
+                }
+            }
+        }
+        return 0;
+    }
+    public Node addOne(Node head) {
+        int k=find(head);
+        if(k!=0){
+            Node node=new Node(k);
+            node.next=head;
+            return node;
+        }else return head;
+    }
+}
