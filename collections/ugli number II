@@ -1,0 +1,39 @@
+class Solution {
+    public int nthUglyNumber(int n) {
+        if(n==1) return 1;
+        List<Integer> list=new ArrayList<>();
+        List<Integer> l1=new ArrayList<>(),l2=new ArrayList<>(),l3=new ArrayList<>();
+        int index1=0,index2=0,index3=0;
+        list.add(1);
+        int k=1;
+       while(list.size()<n){
+            int a=k*2,b=k*3,c=k*5;
+            l1.add(a);
+            l2.add(b);
+            l3.add(c);
+            if(l1.get(index1)<=l2.get(index2) && l1.get(index1)<=l3.get(index3)){
+                k=l1.get(index1);
+                list.add(k);
+                index1++;
+                if(l2.get(index2)==k) index2++;
+                if(l3.get(index3)==k) index3++;
+            }
+            else if(l2.get(index2)<=l1.get(index1) && l2.get(index2)<=l3.get(index3)){
+                k=l2.get(index2);
+                list.add(k);
+                index2++;
+                if(l1.get(index1)==k) index1++;
+                if(l3.get(index3)==k) index3++;
+            }
+            else if(l3.get(index3)<=l1.get(index1) && l3.get(index3)<=l2.get(index2)){
+                k=l3.get(index3);
+                list.add(k);
+                index3++;
+                if(l1.get(index1)==k) index1++;
+                if(l2.get(index2)==k) index2++;
+            }
+        }
+
+        return list.get(n-1);
+    }
+}
