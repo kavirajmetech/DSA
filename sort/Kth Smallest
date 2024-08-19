@@ -1,0 +1,20 @@
+
+class Solution {
+    public static int kthSmallest(int[] arr, int k) {
+        int m=0;
+        for(int i:arr){
+            m=Math.max(i,m);
+        }
+        int[] newarr=new int[m+1];
+        for(int i:arr){
+            newarr[i]=i;
+        }
+        for(int i:newarr){
+            if(i!=0){
+                if(k==1) return i;
+                k--;
+            }
+        }
+        return 0;
+    }
+}
